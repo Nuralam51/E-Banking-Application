@@ -1,0 +1,287 @@
+<div class="page-content">
+    <div class="d-flex justify-content-center flex-wrap grid-margin">
+        <div class="col-12 col-md-12 col-lg-6 col-xl-6">
+            <h4 class="mb-3 mb-md-0">Settings</h4>
+        </div>
+    </div>
+    <!-- personal -->
+    <div class="row">
+        <div class="col-12 col-xl-12 stretch-card">
+            <div class="row flex-grow justify-content-center">
+                <div class="col-12 col-md-12 col-lg-8 col-xl-6 grid-margin stretch-card">
+                    <div class="row col-12">
+                        <div class="col-9">
+                            <div class="row">
+                                <div class="col-3">
+                                    <i style="margin-top: 1rem;margin-left: 1rem;" data-feather="user"></i>
+                                </div>
+                                <div class="col-6">
+                                    <h5 class="mt-3" style="margin-left: -5rem;">Personal details</h5>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-3 mt-1 text-right">
+                            <button id="personalAction" class="btn" (click)="show(11)">
+                                <i width="30" height="30" stock="1px" stroke-width="1" data-feather="chevron-down"
+                                    style="background-color: gainsboro; border-radius: 50%;"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr style="margin-left: 25rem;width: 50%; margin-top: -1rem;">
+        <div class="col-12 col-xl-12 stretch-card" id="personal">
+            <div class="row flex-grow justify-content-center">
+                <div class="col-12 col-md-12 col-lg-8 col-xl-6 grid-margin">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="bd" style="border:2px solid #e8ebf1;; border-radius: 1rem;padding: 1.3rem;">
+                                <div class="row">
+                                    <div class="col">
+                                        <h6>{{ currentUserDetails.name }}</h6>
+                                        <p>{{ currentUserDetails.accountNo }}</p>
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="row">
+                                    <div class="col">
+                                        <h6>Address</h6>
+                                        <p>{{ currentUserDetails.address }}</p>
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="row">
+                                    <div class="col">
+                                        <h6>Phone Number</h6>
+                                        <p>{{ currentUserDetails.phone }}
+                                            <span class="badge badge-pill badge-success ml-2"
+                                                style="padding: 8px 12px; font-size: 11px; font-weight: 500;text-transform: uppercase;">Verified</span>
+                                        </p>
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="row">
+                                    <div class="col">
+                                        <h6>Email Address</h6>
+                                        <p>{{ currentUser.email }}
+                                            <span class="badge badge-pill badge-success ml-2"
+                                                style="padding: 8px 12px; font-size: 11px; font-weight: 500;text-transform: uppercase;">verified</span>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- account -->
+    <div class="row">
+        <div class="col-12 col-xl-12 stretch-card">
+            <div class="row flex-grow justify-content-center">
+                <div class="col-12 col-md-12 col-lg-8 col-xl-6 grid-margin stretch-card">
+                    <div class="row col-12">
+                        <div class="col-9">
+                            <div class="row">
+                                <div class="col-3">
+                                    <i style="margin-top: 1rem;margin-left: 1rem;" data-feather="settings"></i>
+                                </div>
+                                <div class="col-6">
+                                    <h5 class="mt-3" style="margin-left: -5rem;">Account settings</h5>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-3 mt-1 text-right">
+                            <button id="accountAction" class="btn" (click)="show(22)">
+                                <i width="30" height="30" stock="1px" stroke-width="1" data-feather="chevron-down"
+                                    style="background-color: gainsboro; border-radius: 50%;"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr style="margin-left: 25rem; width: 50%; margin-top: -1rem;">
+        <div class="col-12 col-xl-12 stretch-card" id="account">
+            <div class="row flex-grow justify-content-center">
+                <div class="col-12 col-md-12 col-lg-8 col-xl-6 grid-margin">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="bd" style="border:2px solid #e8ebf1;; border-radius: 1rem;padding: 1.3rem;">
+                                <div class="row">
+                                    <div class="col">
+                                        <h6>Language</h6>
+                                        <p>English</p>
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="row">
+                                    <div class="col">
+                                        <h6>Account status</h6>
+                                        <p *ngIf="currentUser.status === 1">Active</p>
+                                        <p *ngIf="currentUser.status === 0">Disbale</p>
+                                    </div>
+                                    <div class="col mt-1 text-right">
+                                        <button href="" class="btn btn-outline-danger" (click)="deleteAccount()"
+                                            style="border: none;border-radius: 1rem;">Close account</button><br>
+                                        <button class="btn btn-warning btn-sm" *ngIf="currentUser.status == 0" (click)="sendOtp(currentUser)"
+                                            style="border: none;border-radius: 1rem;">Active account</button>
+                                    </div>
+                                </div>
+                                <div class="row" id="otp"
+                                    style="background-color: white; margin-top: 1rem;border:2px solid #e8ebf1; border-radius: 1rem;padding: 1.3rem;">
+                                    <form class="mt-3" (ngSubmit)="f.form.valid && checkOTP()" #f="ngForm"
+                                        novalidate>
+                                        <div class="alert alert-success" role="alert" *ngIf="successMessages">
+                                            {{ successMessages }}
+                                        </div>
+                                        <div class="alert alert-danger" role="alert" *ngIf="errorMessages">
+                                            {{ errorMessages }}
+                                        </div>
+                                        <div class="alert alert-danger" role="alert"
+                                            *ngIf="f.submitted && !otp.valid">
+                                            activation code is required
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" name="otp" placeholder="Enter OTP code"
+                                                [(ngModel)]="user.otp" #otp="ngModel" required>
+                                        </div>
+                                        <button class="btn btn-outline-danger"
+                                            style="margin-top: 10px;border-radius: 1rem;"
+                                            (click)="show(55)">Cancel</button>
+                                        <button type="submit" class="btn btn-outline-success submit"
+                                            style="margin-top: 10px;margin-left: 6px; border-radius: 1rem;">Activate</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- security -->
+    <div class="row" hidden>
+        <div class="col-12 col-xl-12 stretch-card">
+            <div class="row flex-grow justify-content-center">
+                <div class="col-12 col-md-12 col-lg-8 col-xl-6 grid-margin stretch-card">
+                    <div class="row col-12">
+                        <div class="col-9">
+                            <div class="row">
+                                <div class="col-3">
+                                    <i style="margin-top: 1rem;margin-left: 1rem;" data-feather="shield"></i>
+                                </div>
+                                <div class="col-6">
+                                    <h5 class="mt-3" style="margin-left: -5rem;">Security</h5>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-3 mt-1 text-right">
+                            <button id="securityAction" class="btn" (click)="show(33)">
+                                <i width="30" height="30" stock="1px" stroke-width="1" data-feather="chevron-down"
+                                    style="background-color: gainsboro; border-radius: 50%;"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr style="margin-left: 25rem; width: 50%; margin-top: -1rem;">
+        <div class="col-12 col-xl-12 stretch-card" id="security">
+            <div class="row flex-grow justify-content-center">
+                <div class="col-12 col-md-12 col-lg-8 col-xl-6 grid-margin">
+                    <div class="row">
+                        <div class="col-12">
+                            <div style="border:2px solid #e8ebf1; border-radius: 1rem;padding: 1.3rem;">
+                                <div class="row">
+                                    <div class="col">
+                                        <h6 class="mt-2">Password</h6>
+                                    </div>
+                                    <div class="col text-right">
+                                        <button (click)="show(1)" class="btn btn-outline-primary"
+                                            style="border: none;border-radius: 1rem;">Change</button>
+                                    </div>
+                                </div>
+                                <div class="row" id="changepassword"
+                                    style="background-color: white; margin-top: 1rem;border:2px solid #e8ebf1; border-radius: 1rem;padding: 1.3rem;">
+                                    <form class="mt-3" (ngSubmit)="f.form.valid && changePassword()" #f="ngForm"
+                                        novalidate>
+                                        <div class="alert alert-success" role="alert" *ngIf="successMessages">
+                                            {{ successMessages }}
+                                        </div>
+                                        <div class="alert alert-danger" role="alert" *ngIf="errorMessages">
+                                            {{ errorMessages }}
+                                        </div>
+                                        <div class="alert alert-danger" role="alert"
+                                            *ngIf="f.submitted && !email.valid">
+                                            reset password email is required
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="email" class="form-control" name="email"
+                                                placeholder="reset password email" [(ngModel)]="user.email"
+                                                #email="ngModel" ng-value="user.email" required>
+                                        </div>
+                                        <button class="btn btn-outline-danger"
+                                            style="margin-top: 10px;border-radius: 1rem;"
+                                            (click)="show(0)">Cancel</button>
+                                        <button type="submit" class="btn btn-outline-success submit"
+                                            style="margin-top: 10px;margin-left: 6px; border-radius: 1rem;">Send Reset
+                                            link</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- verification -->
+    <div class="row">
+        <div class="col-12 col-xl-12 stretch-card">
+            <div class="row flex-grow justify-content-center">
+                <div class="col-12 col-md-12 col-lg-8 col-xl-6 grid-margin stretch-card">
+                    <div class="row col-12">
+                        <div class="col-9">
+                            <div class="row">
+                                <div class="col-3">
+                                    <i style="margin-top: 1rem;margin-left: 1rem;" data-feather="check-circle"></i>
+                                </div>
+                                <div class="col-6">
+                                    <h5 class="mt-3" style="margin-left: -5rem;">Verification</h5>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-3 mt-1 text-right">
+                            <button id="verifyAction" class="btn" (click)="show(44)">
+                                <i width="30" height="30" stock="1px" stroke-width="1" data-feather="chevron-down"
+                                    style="background-color: gainsboro; border-radius: 50%;"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr style="margin-left: 25rem; width: 50%; margin-top: -1rem;">
+        <div class="col-12 col-xl-12 stretch-card" id="verification">
+            <div class="row flex-grow justify-content-center">
+                <div class="col-12 col-md-12 col-lg-8 col-xl-6 grid-margin">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="bd" style="border:2px solid #e8ebf1;; border-radius: 1rem;padding: 1.3rem;">
+                                <div class="row">
+                                    <div class="col">
+                                        <h6 class="mt-2">Account verification</h6>
+                                        <p>Your account is fully verified.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

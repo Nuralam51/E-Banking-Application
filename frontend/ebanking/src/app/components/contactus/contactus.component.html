@@ -1,0 +1,62 @@
+<div class="page-content">
+    <div class="d-flex justify-content-center flex-wrap grid-margin">
+        <div class="col-12 col-md-12 col-lg-6 col-xl-6">
+            <h4 class="mb-3 mb-md-0">Contact Us</h4>
+        </div>
+    </div>
+    <div class="row" id="physicalform">
+        <div class="col-12 col-xl-12 stretch-card">
+            <div class="row flex-grow justify-content-center">
+                <div class="col-12 col-md-12 col-lg-8 col-xl-6 grid-margin stretch-card">
+                    <div class="card" style="border: 2px solid #e8ebf1;border-radius: 30px;">
+                        <div class="card-body">
+                            <div class="email-head-title d-flex align-items-center">
+                                <span data-feather="edit" class="icon-md mr-2"></span>
+                                <h6>Message Us</h6>
+                            </div>
+                            <form class="mt-3" (ngSubmit)="f.form.valid && sendMail()" #f="ngForm" novalidate style="padding-bottom: 10px;">
+                                <div class="alert alert-success" role="alert" *ngIf="successMessage">
+                                    {{ successMessage }}
+                                </div>
+                                <div class="alert alert-danger" role="alert" *ngIf="errorMessage">
+                                    {{ errorMessage }}
+                                </div>
+                                <div class="alert alert-danger" role="alert" *ngIf="f.submitted && !subject.valid">
+                                    Problem is required
+                                </div>
+                                <div class="alert alert-danger" role="alert" *ngIf="f.submitted && !body.valid">
+                                    Message is required
+                                </div>
+                                <div class="form-group">
+                                    <input type="email" class="form-control" name="email" placeholder="Your email" [(ngModel)]="mail.to"
+                                        #email="ngModel" ng-value="mail.to" hidden>
+                                </div>
+                                <div class="form-group">
+                                    <input type="email" class="form-control" name="email" placeholder="Your email" [(ngModel)]="mail.from"
+                                        #email="ngModel" ng-value="mail.from" hidden>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label">Problem</label>
+                                    <input type="text" class="form-control" placeholder="problem" name="subject"
+                                        [(ngModel)]="mail.subject" #subject="ngModel" required>
+
+                                </div>
+                                <div class="form-group">
+                                    <input class="form-control" name="sentDate" placeholder="" [(ngModel)]="mail.sentDate"
+                                        #sendDate="ngModel" ng-value="new Date()" hidden>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label">Message</label>
+                                    <textarea type="message" class="form-control" placeholder="messages" name="body"
+                                        [(ngModel)]="mail.body" #body="ngModel" required rows="5"></textarea>
+                                </div>
+                                <button class="btn btn-outline-primary" type="submit"
+                                    style="border-radius: 1rem;">Send</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

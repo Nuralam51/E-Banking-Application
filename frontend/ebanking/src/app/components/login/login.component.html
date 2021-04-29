@@ -1,0 +1,58 @@
+<div class="main-wrapper">
+    <div class="page-wrapper full-page">
+        <div class="page-content d-flex align-items-center justify-content-center">
+            <div class="row w-100 mx-0 auth-page" style="margin-left: -10rem!important; margin-top: -3rem;">
+                <div class="col-md-6 col-xl-5 mx-auto">
+                    <div class="card" style="border: 2px solid #e8ebf1;border-radius: 30px;">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="auth-form-wrapper py-5"
+                                    style="padding-left: 2.5rem; padding-right: 2.5rem;">
+                                    <a class="noble-ui-logo d-block mb-2"><span
+                                            style="color: black;font-weight: 500;">E-</span> <span> Banking</span></a>
+                                    <p class="text-muted font-weight-normal mb-4">Welcome! Log in to your account.</p>
+                                    <form (ngSubmit)="f.form.valid && login()" #f="ngForm" novalidate>
+                                        <div class="alert alert-danger" role="alert" *ngIf="successMessage">
+                                            {{ successMessage }}
+                                        </div>
+                                        <div class="alert alert-danger" role="alert" *ngIf="errorMessage">
+                                            {{ errorMessage }}
+                                        </div>
+                                        <div class="alert alert-danger" role="alert"
+                                            *ngIf="f.submitted && !email.valid">
+                                            email is required
+                                        </div>
+                                        <div class="alert alert-danger" role="alert"
+                                            *ngIf="f.submitted && !password.valid">
+                                            password is required
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="email" class="form-control" placeholder="email" name="email"
+                                                autofocus [(ngModel)]="user.email" #email="ngModel" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="password" class="form-control" placeholder="password"
+                                                name="password" [(ngModel)]="user.password" #password="ngModel"
+                                                required>
+                                        </div>
+                                        <div class="form-group">
+                                            <button class="btn btn-outline-primary" type="submit"
+                                                style="border-radius: 1rem;"><i class="fa fa-spinner fa-spin" [hidden]="hidden"></i>Login</button>
+                                            <a class="text-muted text-decoration-none" [routerLink]="['/forget-password']"
+                                                style="float:right;border-radius: 1rem;"><small>forget
+                                                    password</small></a>
+                                        </div>
+                                    </form>
+                                    <a [routerLink]="['/register/verify']"
+                                        class="d-block mt-3 text-muted text-decoration-none">
+                                        <small>Don't have account? Sign up here</small>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

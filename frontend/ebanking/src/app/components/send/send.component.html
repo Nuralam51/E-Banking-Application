@@ -1,0 +1,114 @@
+<div class="page-content">
+    <div class="d-flex justify-content-center flex-wrap grid-margin">
+        <div class="col-12 col-md-12 col-lg-6 col-xl-6">
+            <h4 class="mb-3 mb-md-0">Send Money</h4>
+        </div>
+    </div>
+    <div class="row" id="banktobank">
+        <div class="col-12 col-xl-12 stretch-card">
+            <div class="row flex-grow justify-content-center">
+                <div class="col-12 col-md-12 col-lg-8 col-xl-6 grid-margin stretch-card">
+                    <div style="border: 2px solid #e8ebf1;border-radius: 30px;width: 100%;">
+                        <div class="card-body" style="padding-bottom: 0rem;">
+                            <div class="row">
+                                <div class="col-9">
+                                    <div class="row">
+                                        <div class="col-3 text-center pt-2">
+                                            <img src="assets/img/banktobank.png" width="60%">
+                                        </div>
+                                        <div class="col-9">
+                                            <h5>Bank to Bank</h5>
+                                            <p class="mt-2">Send to anyone on Bank.</p>
+                                            <p class="mt-2">
+                                                <span class="badge badge-pill badge-success">free</span>
+                                                <span class="badge badge-pill badge-danger" style="margin-left: 5px;">Instant </span>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-3 mt-2 text-right">
+                                    <button class="btn mt-2" (click)="show(1)">
+                                        <i width="30" height="30" stock="1px" stroke-width="1"
+                                            data-feather="chevron-right"
+                                            style="background-color: gainsboro; border-radius: 50%;"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row" id="accountno">
+        <div class="col-12 col-xl-12 stretch-card">
+            <div class="row flex-grow justify-content-center">
+                <div class="col-12 col-md-12 col-lg-8 col-xl-6 grid-margin stretch-card">
+                    <div class="card" style="border: 2px solid #e8ebf1;border-radius: 30px;">
+                        <div class="card-body">
+                            <h4 class="text-center">Bank to Bank</h4>
+                            <form class="mt-3" (ngSubmit)="f.form.valid && sendMoney()" #f="ngForm" novalidate>
+                                <h5 class="mb-2 text-center">Who do you want to send it to?</h5>
+                                <div class="alert alert-danger" role="alert" *ngIf="errorMessage">
+                                    {{ errorMessage }}
+                                </div>
+                                <div class="alert alert-success" role="alert" *ngIf="successMessage">
+                                    {{ successMessage }}
+                                </div>
+                                <div class="alert alert-danger" role="alert" *ngIf="f.submitted && !raccountno.valid">
+                                    Receiver account number must be valid and 16 character long
+                                </div>
+                                <div class="alert alert-danger" role="alert" *ngIf="f.submitted && !samount.valid">
+                                    Amount is upto 1000 Tk.
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" class="form-control" name="name"
+                                        [(ngModel)]="send.name" ng-value="send.name" #name="ngModel" required hidden>
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" class="form-control" name="accountNo"
+                                        [(ngModel)]="send.accountNo" ng-value="send.accountNo" #accountno="ngModel" required hidden>
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" class="form-control" name="sendaccountNo"
+                                        [(ngModel)]="send.sendAccountNo" ng-value="send.sendAccountNo" #saccountno="ngModel" required hidden>
+                                </div>
+                                <div class="form-group" style="margin-left: 7rem; margin-top: 1rem;">
+                                    <input type="text" class="form-control text-center border-bottom"
+                                        (keypress)="isInputNumber($event)" placeholder="receiver account no"
+                                        style="font-size: 20px; border:none; width: 80%;" name="receieveAccountNo"
+                                        [(ngModel)]="send.receiveAccountNo" #raccountno="ngModel" minlength="15"
+                                        required>
+                                </div>
+                                <div class="row">
+                                    <div class="col-3">
+                                        <h3 class="mt-3" style="font-size: 35px;margin-left: 8rem !important;">&#2547;
+                                        </h3>
+                                    </div>
+                                    <div class="col-9">
+                                        <div class="from-group">
+                                            <input type="text" class="form-control text-center border-bottom"
+                                                (keypress)="isInputNumber($event)" placeholder="0.00"
+                                                style="font-size: 50px; border:none; width: 60%;" name="samount"
+                                                [(ngModel)]="send.amount" #samount="ngModel" minlength="4" required>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="text-center mt-3 mb-4">
+                                    <span class="badge badge-pill badge-secondary"
+                                        style="padding: 8px 12px; font-size: 14px; font-weight: 500;">Limit - {{ currentUserBalance }}.00</span>
+                                </div>
+                                <div class="text-center">
+                                    <button type="button" class="btn btn-outline-danger mr-2" (click)="show(0)"
+                                        style="border-radius: 1rem;">Back</button>
+                                    <button type="submit" class="btn btn-outline-success"
+                                        style="border-radius: 1rem;" [disabled]="currentUserBalance < 2000 || disable"><i class="fa fa-spinner fa-spin" [hidden]="hidden"></i>Send</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

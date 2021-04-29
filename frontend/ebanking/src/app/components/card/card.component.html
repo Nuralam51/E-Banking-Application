@@ -1,0 +1,136 @@
+<div class="page-content">
+    <div class="d-flex justify-content-center flex-wrap grid-margin">
+        <div class="col-12 col-md-12 col-lg-6 col-xl-6">
+            <h4 class="mb-3 mb-md-0">Bank Cards</h4>
+        </div>
+    </div>
+    <div class="d-flex justify-content-center flex-wrap grid-margin">
+        <div class="col-12 col-md-12 col-lg-6 col-xl-6">
+            <div class="alert alert-warning" role="alert" *ngIf="cardDetails != null && cardStatus === 0">
+                <b>Important:</b><br> You are already request for a shopping card. Your card request is pending. 
+                When card is ready, we will mail you and card information show in here.  
+            </div>
+        </div>
+    </div>
+    <div class="row" id="showCard" *ngIf="cardStatus === 1">
+        <div class="col-12 col-xl-12 stretch-card">
+            <div class="row flex-grow justify-content-center">
+                <div class="col-12 col-md-12 col-lg-8 col-xl-6 grid-margin stretch-card">
+                    <div class="row col-12">
+                        <div class="col-5">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="active"
+                                        style="border: 1px solid lightgray;padding: 15px 30px; margin-bottom: 10px;border-radius: 0.5rem;">
+                                        <small style="font-size: 13px;">Visa</small>
+                                        <p style="font-size: 16px;">{{ cardDetails.cardNo }} <span
+                                                style="float: right;font-size: 25px">&#2547;</span></p>
+                                        <p *ngIf="cardStatus === 1">Active</p>
+                                        <p *ngIf="cardStatus === 0">Disable</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-7 mt-1 text-right" style="border: 1px solid lightgray;border-radius: 1rem;">
+                            <img src="assets/img/visa.png" alt=""
+                                style="width: 15rem;float: left;margin-top: 1rem;margin-bottom: 2rem;">
+                            <p style="margin-top: 1rem;"><span style="text-transform: uppercase;">Visa Card</span></p>
+                            <h4 style="margin-top: 1rem;">{{ cardDetails.cardNo}}</h4>
+                            <p style="margin-top: 5px;">
+                                <span>{{ cardDetails.cardDate }}</span>
+                                <span style="margin-left: 3.5rem;">{{ cardDetails.cardPin }}</span>
+                            </p>
+                            <button class="btn btn-outline-danger"
+                                style="margin: -2rem 17rem 0 0;border: none; border-radius: 3rem;"><i width="20"
+                                    height="20" stock="2px" stroke-width="1" data-feather="trash-2"></i> Cancel
+                                Card</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row" id="physicalcard" *ngIf="cardStatus == null">
+        <div class="col-12 col-xl-12 stretch-card">
+            <div class="row flex-grow justify-content-center">
+                <div class="col-12 col-md-12 col-lg-8 col-xl-6 grid-margin stretch-card">
+                    <div style="border: 2px solid #e8ebf1;border-radius: 30px;width: 100%;">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-9">
+                                    <div class="row">
+                                        <div class="col-3 text-center pt-1">
+                                            <img src="assets/img/visa.jpg" width="60%">
+                                        </div>
+                                        <div class="col-9">
+                                            <p>Get your physical card. <br> Get cash at ATM all over the bangladesh</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-3 mt-2 text-right">
+                                    <button class="btn" (click)="showform(1)">
+                                        <i width="30" height="30" stock="1px" stroke-width="1"
+                                            data-feather="chevron-right"
+                                            style="background-color: gainsboro; border-radius: 50%;"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row" id="physicalform">
+        <div class="col-12 col-xl-12 stretch-card">
+            <div class="row flex-grow justify-content-center">
+                <div class="col-12 col-md-12 col-lg-8 col-xl-6 grid-margin stretch-card">
+                    <div class="card" style="border: 2px solid #e8ebf1;border-radius: 30px;">
+                        <div class="card-body" style="padding: 35px;">
+                            <h6 class="card-title">Apply for Physical Card</h6>
+                            <form class="mt-3" (ngSubmit)="f.form.valid && shoppingCard()" #f="ngForm" novalidate>
+                                <div class="alert alert-success" role="alert" *ngIf="successMessages">
+                                    {{ successMessages }}
+                                </div>
+                                <div class="alert alert-danger" role="alert" *ngIf="errorMessages">
+                                    {{ errorMessages }}
+                                </div>
+                                <div class="alert alert-danger" role="alert" *ngIf="f.submitted && !name.valid">
+                                    your full name is required
+                                </div>
+                                <div class="alert alert-danger" role="alert" *ngIf="f.submitted && !nid.valid">
+                                    national ID card number must be 10 character long
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" class="form-control" name="accountno"
+                                        [(ngModel)]="cardAccount.accountNo" ng-value="cardAccount.accountNo" required
+                                        hidden>
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" class="form-control" placeholder="your full name" name="name"
+                                        [(ngModel)]="cardAccount.name" #name="ngModel" required>
+                                </div>
+                                <div class="form-group">
+                                    <div class="custom-file">
+                                        <input type="text" class="form-control"
+                                            placeholder="your 10 character national id card number" name="nid"
+                                            (keypress)="isInputNumber($event)" [(ngModel)]="cardAccount.nid"
+                                            #nid="ngModel" minlength="10" required>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" class="form-control" name="type" [(ngModel)]="cardAccount.type"
+                                        ng-value="cardAccount.type" required hidden>
+                                </div>
+                                <button class="btn btn-outline-danger" style="margin-top: 10px;border-radius: 1rem;"
+                                    (click)="showform(0)">Cancel</button>
+                                <button type="submit" class="btn btn-outline-success submit"
+                                    style="margin-top: 10px;margin-left: 6px; border-radius: 1rem;">Apply</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

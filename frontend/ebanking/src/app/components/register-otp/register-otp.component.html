@@ -1,0 +1,41 @@
+<div class="main-wrapper">
+    <div class="page-wrapper full-page">
+        <div class="page-content d-flex align-items-center justify-content-center">
+            <div class="row w-100 mx-0 auth-page">
+                <div class="col-md-6 col-xl-5 mx-auto">
+                    <div class="card" style="border: 2px solid #e8ebf1;border-radius: 30px;">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="auth-form-wrapper py-5" style="padding-left: 2.5rem; padding-right: 2.5rem;">
+                                    <a class="noble-ui-logo d-block mb-2">E-<span> Banking</span></a>
+                                    <h5 class="text-muted font-weight-normal mb-4">Create a online free account.</h5>
+                                    <div class="card-title" id="otp">
+                                        <form (ngSubmit)="f.form.valid && checkOTP()" #f="ngForm" novalidate>
+                                            <div class="alert alert-danger" role="alert" *ngIf="errorMessages">
+                                                {{ errorMessages }}
+                                            </div>
+                                            <div class="alert alert-danger" role="alert" *ngIf="f.submitted && !otp.valid">
+                                                OTP is required
+                                            </div>
+                                            <div class="form-group">
+                                                <input type="text" class="form-control" name="otp" placeholder="Enter OTP code"
+                                                    [(ngModel)]="user.otp" #otp="ngModel" required>
+                                            </div>
+                                            <div class="mt-3">
+                                                <button type="submit" style="border-radius: 1rem;"
+                                                    class="btn btn-outline-success mr-2 mb-2 mb-md-0">Confirm</button>
+                                                <button [routerLink]="['/login']" style="border-radius: 1rem;"
+                                                    class="btn btn-outline-danger mr-2 mb-2 mb-md-0">Cancel</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="http://code.angularjs.org/1.2.0/angular.min.js"></script>

@@ -1,0 +1,92 @@
+<div class="row" id="intercard">
+    <div class="col-12 col-xl-12 stretch-card">
+        <div class="row flex-grow justify-content-center">
+            <div class="col-12 col-md-12 col-lg-8 col-xl-6 grid-margin stretch-card">
+                <div style="border: 2px solid #e8ebf1;border-radius: 30px;width: 100%;">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-9">
+                                <div class="row">
+                                    <div class="col-3 text-center pt-1">
+                                        <img src="assets/img/mastercard.png" width="60%">
+                                    </div>
+                                    <div class="col-9">
+                                        <p>Get your international card. <br> Get cash at ATM all over the world</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-3 mt-2 text-right">
+                                <button class="btn" (click)="showform(2)">
+                                    <i width="30" height="30" stock="1px" stroke-width="1" data-feather="chevron-right"
+                                        style="background-color: gainsboro; border-radius: 50%;"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row" id="interform">
+    <div class="col-12 col-xl-12 stretch-card">
+        <div class="row flex-grow justify-content-center">
+            <div class="col-12 col-md-12 col-lg-8 col-xl-6 grid-margin stretch-card">
+                <div class="card" style="border: 2px solid #e8ebf1;border-radius: 30px;">
+                    <div class="card-body" style="padding: 35px;">
+                        <h6 class="card-title">Apply for International Card</h6>
+                        <form class="mt-3" (ngSubmit)="f.form.valid && internationalCard()" #f="ngForm" novalidate>
+                            <div class="alert alert-success" role="alert" *ngIf="successMessages">
+                                {{ successMessages }}
+                            </div>
+                            <div class="alert alert-danger" role="alert" *ngIf="errorMessages">
+                                {{ errorMessages }}
+                            </div>
+                            <div class="alert alert-danger" role="alert" *ngIf="f.submitted && !iname.valid">
+                                your full name is required is required
+                            </div>
+                            <div class="alert alert-danger" role="alert" *ngIf="f.submitted && !nid.valid">
+                                national ID card front side and back side is required in one page
+                            </div>
+                            <!-- <div class="alert alert-danger" role="alert" *ngIf="f.submitted && !passport.valid">
+                                passport first 2 page is required in one page
+                            </div> -->
+                            <div class="form-group">
+                                <input type="text" class="form-control" name="accountno"
+                                    [(ngModel)]="cardAccount.accountNo" ng-value="cardAccount.accountNo" required
+                                    hidden>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="your full name" name="name"
+                                    [(ngModel)]="cardAccount.name" #iname="ngModel" required>
+                            </div>
+                            <div class="form-group">
+                                <div class="custom-file">
+                                    <input type="text" class="form-control"
+                                        placeholder="your 10 character national id card number" name="nid"
+                                        (keypress)="isInputNumber($event)" [(ngModel)]="cardAccount.nid" #nid="ngModel"
+                                        minlength="10" required>
+                                </div>
+                            </div>
+                            <!-- <div class="form-group">
+                                <div class="custom-file">
+                                    <input type="text" class="form-control" name="passport"
+                                        placeholder="your passport number" (keypress)="isInputNumber($event)"
+                                        [(ngModel)]="cardAccount.passport" #passport="ngModel" required>
+                                </div>
+                            </div> -->
+                            <div class="form-group">
+                                <input type="text" class="form-control" name="type" [(ngModel)]="cardAccount.type"
+                                    ng-value="cardAccount.type" required hidden>
+                            </div>
+                            <button class="btn btn-outline-danger" style="margin-top: 10px;border-radius: 1rem;"
+                                (click)="showform(0)">Cancel</button>
+                            <button type="submit" class="btn btn-outline-success submit"
+                                style="margin-top: 10px;margin-left: 6px; border-radius: 1rem;">Apply</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

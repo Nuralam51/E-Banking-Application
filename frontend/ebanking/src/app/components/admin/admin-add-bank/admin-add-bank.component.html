@@ -1,0 +1,66 @@
+<div class="page-content">
+    <div class="d-flex justify-content-center flex-wrap grid-margin">
+        <div class="col-12 col-md-12 col-lg-6 col-xl-6">
+            <h4 class="mb-3 mb-md-0">Add User Bank Account</h4>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12 col-xl-12 stretch-card">
+            <div class="row flex-grow justify-content-center">
+                <div class="col-12 col-md-12 col-lg-8 col-xl-6 grid-margin stretch-card">
+                    <div class="card" style="border: 2px solid #e8ebf1;border-radius: 30px;">
+                        <div class="card-body">
+                            <h5 class="text-center mb-3">Add Bank Account</h5>
+                            <form class="mt-3" (ngSubmit)="f.form.valid && save()" #f="ngForm" novalidate>
+                                <div class="alert alert-success" role="alert" *ngIf="successMessages">
+                                    {{ successMessages }}
+                                </div>
+                                <div class="alert alert-danger" role="alert" *ngIf="errorMessages">
+                                    {{ errorMessages }}
+                                </div>
+                                <div class="alert alert-danger" role="alert" *ngIf="f.submitted && !name.valid">
+                                    Name is required
+                                </div>
+                                <div class="alert alert-danger" role="alert" *ngIf="f.submitted && !nid.valid">
+                                    Make sure receiver NID no is valid and 10 character long
+                                </div>
+                                <div class="alert alert-danger" role="alert" *ngIf="f.submitted && !phone.valid">
+                                    Phone number must be 11 character long
+                                </div>
+                                <div class="alert alert-danger" role="alert" *ngIf="f.submitted && !date.valid">
+                                    Date of birth is required
+                                </div>
+                                <div class="alert alert-danger" role="alert" *ngIf="f.submitted && !address.valid">
+                                    Address is required
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" class="form-control" placeholder="name" name="name"
+                                        [(ngModel)]="bankAccount.name" #name="ngModel" required>
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" class="form-control" placeholder="phone" name="phone"
+                                        [(ngModel)]="bankAccount.phone" #phone="ngModel" minlength="11" required>
+                                </div>
+                                <div class="form-group">
+                                    <input type="date" class="form-control" placeholder="date to birth" name="dateOfBirth"
+                                        [(ngModel)]="bankAccount.dateOfBirth" #date="ngModel" required>
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" class="form-control" placeholder="national id card number" name="nid"
+                                        [(ngModel)]="bankAccount.nid" #nid="ngModel" minlength="10" required>
+                                </div>
+                                <div class="form-group">
+                                    <textarea type="text" class="form-control" placeholder="address" name="address" rows="4"
+                                        [(ngModel)]="bankAccount.address" #address="ngModel" required></textarea>
+                                </div>
+                                <div class="text-center">
+                                    <button type="submit" class="btn btn-outline-success" style="border-radius: 1rem;">Save</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

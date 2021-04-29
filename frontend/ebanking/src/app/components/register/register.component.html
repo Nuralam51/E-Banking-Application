@@ -1,0 +1,76 @@
+<div class="main-wrapper">
+    <div class="page-wrapper full-page">
+        <div class="page-content d-flex align-items-center justify-content-center">
+            <div class="row w-100 mx-0 auth-page">
+                <div class="col-md-6 col-xl-5 mx-auto">
+                    <div class="card" style="border: 2px solid #e8ebf1;border-radius: 30px;">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="auth-form-wrapper py-3" style="padding-left: 2.5rem; padding-right: 2.5rem;margin-top: 1rem;">
+                                    <a class="noble-ui-logo d-block mb-2"><span style="color: black;font-weight: 500;">E-</span><span> Banking</span></a>
+                                    <h5 class="text-muted font-weight-normal mb-4">Create a online free account.</h5>
+                                    <div class="card-title" id="conditions">
+                                        <div class="row">
+                                            <div class="bd" style="border:2px solid #e8ebf1;; border-radius: 1rem;padding: 1.3rem;">
+                                                <h6 style="font-weight: 400;">Account Details</h6>
+                                                <ul>
+                                                    <li class="mt-2" style="text-transform: initial;font-weight: 400;">
+                                                        You need your Bank account number (16 digits) and branch name
+                                                        where you opend your
+                                                        account.
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <div class="bd mt-3"
+                                                style="border:2px solid #e8ebf1; border-radius: 1rem;padding: 1.3rem;">
+                                                <h6 style="font-weight: 400;">Register contact details</h6>
+                                                <ul class="mt-2" style="text-transform: initial;">
+                                                    <li style="font-weight: 400;">Please ensure the register mobile number is active and available
+                                                        with you to receive
+                                                        verification code
+                                                        through SMS.
+                                                    </li>
+                                                    <li style="font-weight: 400;">please ensure your register email inbox is accessible to receive
+                                                        a verification code
+                                                        through email for verification.</li>
+                                                </ul>
+                                            </div>
+                                            <div class="mt-3">
+                                                <button class="btn btn-outline-success" style="border-radius: 1rem;"
+                                                    type="submit" (click)="show(1)">Accept and
+                                                    Proceed</button>
+                                                <button [routerLink]="['/login']"
+                                                    style="border-radius: 1rem;margin-left: 0.5rem;"
+                                                    class="btn btn-outline-danger">Cancel</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- second -->
+                                    <div class="card-title" id="checkAccount">
+                                        <form (ngSubmit)="f.form.valid && verifyUser()" #f="ngForm" novalidate>
+                                            <div class="alert alert-danger" role="alert" *ngIf="errorMessages">
+                                                {{ errorMessages }}
+                                            </div>
+                                            <div class="alert alert-danger" role="alert" *ngIf="f.submitted && !accountno.valid">
+                                                Account No is required
+                                            </div>
+                                            <div class="form-group">
+                                                <input type="text" class="form-control" placeholder="account number" name="accountno" 
+                                                    [(ngModel)]="bankAccount.accountNo" #accountno="ngModel" required>
+                                            </div>
+                                            <div class="mt-3">
+                                                <button type="submit" class="btn btn-outline-success" style="border-radius: 1rem;">Verify your account</button>
+                                            </div>
+                                        </form>
+                                        <a [routerLink]="['/login']" style="border-radius: 1rem; margin-left: 11rem;text-transform: capitalize;margin-top: -4rem;"
+                                        class="btn btn-outline-danger"><small>Cancel</small></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,71 @@
+<!-- start content -->
+<div class="page-content">
+    <div class="d-flex justify-content-center flex-wrap grid-margin">
+        <div class="col-12 col-md-12 col-lg-6 col-xl-6">
+            <h4 class="mb-3 mb-md-0">Welcome to Dashboard</h4>
+        </div>
+    </div>
+    <div class="d-flex justify-content-center flex-wrap grid-margin" *ngIf="currentUser.status === 0">
+        <div class="col-12 col-md-12 col-lg-6 col-xl-6">
+            <div class="alert alert-warning" role="alert">
+                <b>Important</b><br>Your website account is disable not bank account. <br> For active your account goto setting and account settings section and active your account.  
+            </div>
+        </div>
+    </div>
+    <div class="row" *ngIf="currentUser.status === 1">
+        <div class="col-12 col-xl-12 stretch-card">
+            <div class="row flex-grow justify-content-center">
+                <div class="col-12 col-md-6 col-lg-6 col-xl-6 grid-margin stretch-card">
+                    <div class="card" style="border: 2px solid #e8ebf1;border-radius: 30px;">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <h3 class="card-title mt-2">Available Balance</h3>
+                            </div>
+                            <div class="row">
+                                <div class="col-6 col-md-12 col-xl-11">
+                                    <h2 class="mb-2 mt-1">&#2547; <span style="letter-spacing: 0.15rem;"> {{ balanceDetails }}.00</span>
+                                    </h2>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row" *ngIf="currentUser.status == 1">
+        <div class="col-md-3"></div>
+        <div class="col-12 col-md-12 col-lg-8 col-xl-6">
+            <div class="card" style="border: 2px solid #e8ebf1;border-radius: 30px;">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-baseline mb-2">
+                        <h6 class="card-title mb-3" style="text-transform: none;">Recent Activity</h6>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table table-hover mb-0">
+                            <tbody>
+                                <tr *ngFor="let items of transactionList">
+                                    <td style="line-height: 1.6;">{{ items.description }} <br> {{ items.date }}</td>
+                                    <td *ngIf='items.status === 1'><span class="badge badge-pill badge-success"
+                                            style="text-transform: uppercase;">Success</span></td>
+                                    <td *ngIf='items.status === 0'><span class="badge badge-pill badge-warning"
+                                            style="text-transform: uppercase;color:white;">Pending</span></td>
+                                    <td *ngIf='items.status === -1'><span class="badge badge-pill badge-danger"
+                                            style="text-transform: uppercase;">Decline</span></td>
+                                    <td style="text-align: center;">- {{ items.amount }}.00 TK.</td>
+                                    <td *ngIf='items.transactionType === "debit"' style="text-align: center;">- {{
+                                        items.amount }}.00 TK.</td>
+                                    <td *ngIf='items.transactionType === "credit"'
+                                        style="text-align: center;color: #10b759;font-weight: bold;">+ {{ items.amount
+                                        }}.00 TK.</td>
+                                    <!-- &#2547; -->
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,128 @@
+<div class="main-wrapper">
+    <nav class="sidebar" *ngIf="currentUser">
+        <div class="sidebar-header">
+            <a class="sidebar-brand text-decoration-none" [routerLink]="['dashboard']">
+                E-<span> Banking</span>
+            </a>
+            <div class="sidebar-toggler not-active">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+        <div class="sidebar-body">
+            <!-- user menu -->
+            <ul class="nav">
+                <li class="nav-item" *ngIf="currentUser && isUser">
+                    <a [routerLink]="['dashboard']" class="nav-link">
+                        <i class="link-icon" data-feather="server"></i>
+                        <span class="link-title">Dashboard</span>
+                    </a>
+                </li>
+                <li class="nav-item" *ngIf="currentUser.status == 1 && isUser">
+                    <a [routerLink]="['deposit']" class="nav-link">
+                        <i class="link-icon" data-feather="download"></i>
+                        <span class="link-title">Deposit</span>
+                    </a>
+                </li>
+                <li class="nav-item" *ngIf="currentUser.status == 1 && isUser">
+                    <a [routerLink]="['withdraw']" class="nav-link">
+                        <i class="link-icon" data-feather="upload"></i>
+                        <span class="link-title">Withdraw</span>
+                    </a>
+                </li>
+                <li class="nav-item" *ngIf="currentUser.status == 1 && isUser">
+                    <a [routerLink]="['send']" class="nav-link">
+                        <i class="link-icon" data-feather="send"></i>
+                        <span class="link-title">Send</span>
+                    </a>
+                </li>
+                <li class="nav-item" *ngIf="currentUser.status == 1 && isUser">
+                    <a [routerLink]="['card']" class="nav-link">
+                        <i class="link-icon" data-feather="credit-card"></i>
+                        <span class="link-title">Bank Card</span>
+                    </a>
+                </li>
+                <li class="nav-item" *ngIf="currentUser.status == 1 && isUser">
+                    <a [routerLink]="['transactions']" class="nav-link">
+                        <i class="link-icon" data-feather="file-text"></i>
+                        <span class="link-title">Transactions</span>
+                    </a>
+                </li>
+                <li class="nav-item" *ngIf="currentUser && isUser">
+                    <a [routerLink]="['settings']" class="nav-link">
+                        <i class="link-icon" data-feather="settings"></i>
+                        <span class="link-title">Settings</span>
+                    </a>
+                </li>
+                <li class="nav-item" *ngIf="currentUser && isUser">
+                    <a [routerLink]="['contact']" class="nav-link">
+                        <i class="link-icon" data-feather="headphones"></i>
+                        <span class="link-title">Contact Us</span>
+                    </a>
+                </li>
+                <!-- admin menu -->
+                <li class="nav-item" *ngIf="currentUser && isAdmin">
+                    <a [routerLink]="['admin/dashboard']" class="nav-link">
+                        <i class="link-icon" data-feather="monitor"></i>
+                        <span class="link-title">Dashboard</span>
+                    </a>
+                </li>
+                <li class="nav-item" *ngIf="currentUser && isAdmin">
+                    <a [routerLink]="['admin/users']" class="nav-link">
+                        <i class="link-icon" data-feather="users"></i>
+                        <span class="link-title">Total Users</span>
+                    </a>
+                </li>
+                <li class="nav-item" *ngIf="currentUser && isAdmin">
+                    <a [routerLink]="['admin/bank/add']" class="nav-link">
+                        <i class="link-icon" data-feather="user-plus"></i>
+                        <span class="link-title">Bank Account</span>
+                    </a>
+                </li>
+                <li class="nav-item" *ngIf="currentUser && isAdmin">
+                    <a [routerLink]="['admin/balance/add']" class="nav-link">
+                        <i class="link-icon" data-feather="dollar-sign"></i>
+                        <span class="link-title">Add Balance</span>
+                    </a>
+                </li>
+                <li class="nav-item" *ngIf="currentUser && isAdmin">
+                    <a [routerLink]="['admin/card/request']" class="nav-link">
+                        <i class="link-icon" data-feather="credit-card"></i>
+                        <span class="link-title">Card Request</span>
+                    </a>
+                </li>
+                <li class="nav-item" *ngIf="currentUser && isAdmin">
+                    <a [routerLink]="['admin/withdraw/request']" class="nav-link">
+                        <i class="link-icon" data-feather="upload-cloud"></i>
+                        <span class="link-title">Withdraw Request</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="page-wrapper">
+        <nav class="navbar" *ngIf="currentUser" style="position: absolute;">
+            <a href="#" class="sidebar-toggler">
+                <i data-feather="menu"></i>
+            </a>
+            <div class="navbar-content">
+                <ul class="navbar-nav">
+                    <li class="nav-item mr-2">
+                        <a class="nav-link">
+                            <i data-feather="user" class="mr-2"></i>
+                        </a>
+                        <span style="font-size: 15px;"><small>Hello,</small><br> {{ currentUser.username }}</span>
+                    </li>
+                    <li class="nav-item">
+                        <button (click)="logout()" class="btn nav-link">
+                            <i data-feather="log-out"></i>
+                            <span style="font-size: 15px;">Log Out</span>
+                        </button>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <router-outlet></router-outlet>
+    </div>
+</div>

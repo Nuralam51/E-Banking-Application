@@ -1,0 +1,108 @@
+<div class="page-content">
+    <div class="d-flex justify-content-center flex-wrap grid-margin">
+        <div class="col-12 col-md-12 col-lg-6 col-xl-8">
+            <h4 class="mb-3 mb-md-0">Withdraw Request</h4>
+        </div>
+    </div>
+    <div class="row" id="main-container">
+        <div class="col-md-2"></div>
+        <div class="col-12 col-md-12 col-lg-8 col-xl-8">
+            <div class="card">
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-hover mb-0">
+                            <thead>
+                                <tr style="font-weight: 900; background-color: whitesmoke;">
+                                    <td>Account Number</td>
+                                    <td>Receiver Name</td>
+                                    <td>Receive NID No</td>
+                                    <td>Receiver Phone</td>
+                                    <td>Amount</td>
+                                    <td>Type</td>
+                                    <td>Action</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let request of requestList">
+                                    <td>{{ request.accountNo }}</td>
+                                    <td>{{ request.receiverName }}</td>
+                                    <td>{{ request.receiverNID }}</td>
+                                    <td>{{ request.receiverPhone }}</td>
+                                    <td>{{ request.amount }}</td>
+                                    <td>{{ request.type }}</td>
+                                    <td>
+                                        <button type="submit" class="btn btn-outline-success btn-sm ml-2"
+                                            (click)="onOpenModal('accept')"
+                                            (click)="forAccept(request.id, request.accountNo, request.amount)">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                                stroke-linecap="round" stroke-linejoin="round"
+                                                class="feather feather-check">
+                                                <polyline points="20 6 9 17 4 12"></polyline>
+                                            </svg>
+                                        </button>
+                                        <button type="button" class="btn btn-outline-danger btn-sm ml-2"
+                                            (click)="onOpenModal('refuse')"
+                                            (click)="forDelete(request.id, request.accountNo, request.amount)">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                                stroke-linecap="round" stroke-linejoin="round"
+                                                class="feather feather-x">
+                                                <line x1="18" y1="6" x2="6" y2="18"></line>
+                                                <line x1="6" y1="6" x2="18" y2="18"></line>
+                                            </svg>
+                                        </button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- accept -->
+    <div class="modal fade" id="acceptModal" tabindex="-1" role="dialog" aria-labelledby="acceptModelLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="deleteModelLabel">Accept Bank Cash Withdraw</h5>
+                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Are you sure you want to accept bank cash withdraw request?</p>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">No</button>
+                        <button (click)="acceptBankWithdrawRequest(UserId, UserAcc, userAmount)" class="btn btn-success"
+                            data-bs-dismiss="modal">Accept</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- refuse -->
+    <div class="modal fade" id="refuseModal" tabindex="-1" role="dialog" aria-labelledby="refuseModelLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="deleteModelLabel">Refuse Bank Cash Withdraw</h5>
+                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Are you sure you want to refuse bank cash withdraw request ?</p>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger"
+                            data-bs-dismiss="modal">No</button>
+                        <button (click)="denyBankWithdrawRequest(UserId, UserAcc, userAmount)" class="btn btn-warning" data-bs-dismiss="modal">Refuse</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

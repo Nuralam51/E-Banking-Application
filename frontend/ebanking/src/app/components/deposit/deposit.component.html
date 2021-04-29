@@ -1,0 +1,114 @@
+<div class="page-content">
+    <div class="d-flex justify-content-center flex-wrap grid-margin">
+        <div class="col-12 col-md-12 col-lg-6 col-xl-6">
+            <h4 class="mb-3 mb-md-0">Deposit</h4>
+        </div>
+    </div>
+    <div class="row" id="banktransfer">
+        <div class="col-12 col-xl-12 stretch-card">
+            <div class="row flex-grow justify-content-center">
+                <div class="col-12 col-md-12 col-lg-8 col-xl-6 grid-margin stretch-card">
+                    <div style="border: 2px solid #e8ebf1;border-radius: 30px;">
+                        <div class="card-body" style="padding-bottom: 0rem;">
+                            <div class="row">
+                                <div class="col-9">
+                                    <div class="row">
+                                        <div class="col-3 text-center pt-3">
+                                            <img src="assets/img/banktobank.png" width="60%">
+                                        </div>
+                                        <div class="col-9">
+                                            <h5>Bank Deposit</h5>
+                                            <p class="mt-2">Send money from another bank account to your
+                                                bank account.
+                                                We provide all the details you need to fill in.
+                                            </p>
+                                            <p class="mt-2">
+                                                <span class="badge badge-pill badge-primary">fee - 1%</span>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-3 mt-3 text-right">
+                                    <button class="btn mt-4" (click)="show(1)">
+                                        <i width="30" height="30" stock="1px" stroke-width="1"
+                                            data-feather="chevron-right"
+                                            style="background-color: gainsboro; border-radius: 50%;"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row" id="transfer">
+        <div class="col-12 col-xl-12 stretch-card">
+            <div class="row flex-grow justify-content-center">
+                <div class="col-12 col-md-12 col-lg-8 col-xl-6 grid-margin stretch-card">
+                    <div class="card" style="border: 2px solid #e8ebf1;border-radius: 30px;">
+                        <div class="card-body">
+                            <h4 class="text-center">Bank Deposit</h4>
+                            <p class="mb-2 mt-2 text-center">Note: A 1 % fee will be applied to the final
+                                amount upon crediting the transaction. </p>
+                            <h3 class="text-center mt-5 mb-0" style="color: #1098ad;font-weight: 400;">{{ currentUserDetails.accountNo }}</h3>
+                            <div style="float:center; margin-left: 25%; width: 50%;margin-top: -10px;">
+                                <hr />
+                            </div>
+                            <h6 class="text-center">Online account number</h6>
+                            <div class="row mt-4" style="margin-left: 10px;">
+                                <div class="col">
+                                    <div class="form-group">
+                                        <p>To</p>
+                                        <h5 class="mt-2">E-Banking Ltd.</h5>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="form-group">
+                                        <p>Bank</p>
+                                        <h5 class="mt-2">E-Banking Application</h5>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row" style="margin-left: 10px;">
+                                <div class="col">
+                                    <div class="form-group">
+                                        <p>Account Number</p>
+                                        <h5 class="mt-2">{{ currentUserDetails.accountNo }}</h5>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="form-group">
+                                        <p>Currency</p>
+                                        <h5 class="mt-2">BDT</h5>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row" style="margin-left: 10px;">
+                                <div class="col">
+                                    <div class="form-group">
+                                        <p>City</p>
+                                        <h5 class="mt-2">Chittagong</h5>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="form-group">
+                                        <p>Country</p>
+                                        <h5 class="mt-2">Bangladesh</h5>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="text-center">
+                    <button class="btn btn-outline-danger" style="border: none;border-radius: 1rem;" (click)="show(0)">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
